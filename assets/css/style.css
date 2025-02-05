@@ -1,0 +1,49 @@
+body {
+    background-image: url('/assets/images/background.jpg'); /* Update with the correct path */
+    background-size: auto 175%; /* Keeps the original horizontal proportion, zoom in vertically by 10% */
+    background-position: left 25%; /* Aligns the image to the left, keeping the center vertically */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-color: #181717; /* Fills the remaining space with black color */
+    filter: grayscale(100%); /* Makes the image black and white */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensures full viewport height */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+header {
+    text-align: right;
+}
+
+h1 {
+    font-family: 'Bungee', sans-serif;
+    color: white; /* Make sure the text is visible on a black background */
+    text-align: right; /* Align title to the right */
+    padding-right: 20px; /* Space from the right edge */
+    font-size: 3em; /* Adjust font size */
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-top: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}

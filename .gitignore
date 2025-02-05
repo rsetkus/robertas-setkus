@@ -1,0 +1,27 @@
+# Ignore the default Jekyll build folder
+_site/
+
+# Ignore all gem files
+*.gem
+
+# Ignore bundled gems
+.bundle/
+
+# Ignore Jekyll's temporary files
+*.tmp
+
+# Ignore system-specific files
+.DS_Store
+
+# Ignore log files and temp files
+log/
+tmp/
+
+# Ignore node_modules if you are using JavaScript
+node_modules/
+
+# Ignore .sass-cache if using Sass
+.sass-cache/
+
+# Ignore .jekyll-metadata (Jekyll stores metadata about the build process here)
+.jekyll-metadata

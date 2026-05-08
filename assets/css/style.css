@@ -1,9 +1,11 @@
 body {
-    background-image: url('/assets/images/background.jpg'); /* Update with the correct path */
-    background-size: auto 175%; /* Keeps the original horizontal proportion, zoom in vertically by 10% */
-    background-position: left 25%; /* Aligns the image to the left, keeping the center vertically */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-color: #181717; /* Fills the remaining space with black color */
+    background:
+        linear-gradient(to right, transparent 35%, #181717 65%),
+        url('/assets/images/background.jpg');
+    background-size: auto, auto 175%;
+    background-position: left, left 25%;
+    background-repeat: no-repeat, no-repeat;
+    background-color: #181717;
     filter: grayscale(100%); /* Makes the image black and white */
     margin: 0;
     padding: 0;

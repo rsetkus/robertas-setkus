@@ -1,15 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background:
+        linear-gradient(to top, #181717 0%, transparent 30%),
         linear-gradient(to right, transparent 35%, #181717 65%),
         url('/assets/images/background.jpg');
-    background-size: auto, auto 175%;
-    background-position: left, left 25%;
-    background-repeat: no-repeat, no-repeat;
+    background-size: auto, auto, auto 175%;
+    background-position: left, left, left 25%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
     background-color: #181717;
-    filter: grayscale(100%); /* Makes the image black and white */
+    filter: grayscale(100%);
     margin: 0;
     padding: 0;
-    height: 100vh; /* Ensures full viewport height */
+    height: 100vh;
+    height: 100dvh;
 }
 
 .container {
@@ -25,19 +31,23 @@ header {
 
 h1 {
     font-family: 'Bungee', sans-serif;
-    color: white; /* Make sure the text is visible on a black background */
-    text-align: right; /* Align title to the right */
-    padding-right: 20px; /* Space from the right edge */
-    font-size: 3em; /* Adjust font size */
+    color: white;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 3em;
+    margin: 0;
 }
 
 nav {
-    margin-top: 10px;
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -45,7 +55,54 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    font-size: 1.2em;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+nav ul li a:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    body {
+        background:
+            linear-gradient(to top, #181717 0%, rgba(24, 23, 23, 0.55) 50%, transparent 75%),
+            url('/assets/images/background.jpg');
+        background-size: auto, cover;
+        background-position: left, center 15%;
+        background-repeat: no-repeat, no-repeat;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .container {
+        min-height: 100vh;
+        min-height: 100dvh;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 0 24px 48px;
+    }
+
+    h1 {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+        padding-right: 0;
+    }
+
+    nav {
+        padding-top: 12px;
+    }
+
+    nav ul li a {
+        font-size: 0.65em;
+    }
 }

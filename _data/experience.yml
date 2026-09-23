@@ -1,0 +1,68 @@
+# Work experience shown on /resume/, newest first (source: LinkedIn).
+#   from / to:    first day of the month; only month and year are shown. Omit `to` for a current role.
+#   logo:         file in /assets/images/companies/. Omit it to show a placeholder icon.
+#   description:  Markdown.
+
+- company: Saily
+  logo: saily.jpg
+  from: 2025-05-01
+  description: |
+    Contributed to a production-grade Android eSIM application using modern Kotlin ecosystem tools and scalable architecture patterns. Improved user onboarding by building a flexible flow that accounts for fragmentation across Android devices and eSIM capabilities. Actively mentored junior engineers and advised on technical solutions.
+
+- company: BT
+  logo: bt.jpg
+  from: 2019-05-01
+  to: 2025-03-01
+  description: |
+    Maintained and supported a native Android EE application that was used by 10 million+ users until its closure, ensuring stability and continuity. Subsequently, I joined the development team for the new project, quickly adapting by learning Flutter tools to align with the team's technology stack.
+
+- company: EE
+  logo: ee.jpg
+  from: 2016-05-01
+  to: 2019-05-01
+  description: |
+    EE is the largest and most advanced digital communications company in Britain, delivering mobile and fixed communications services.
+
+    - Led Android application development for the EE team, refactoring and implementing a robust architecture. Designed development guidelines to improve code quality and maintainability. Planned and contributed to the team's successful migration from Java to Kotlin.
+    - Researched, developed, and successfully integrated a Kotlin Multiplatform (KMP) library into a largescale native iOS and Android application.
+
+- company: JPMorgan Chase & Co.
+  logo: jpmorgan.jpg
+  from: 2015-11-01
+  to: 2016-03-01
+  description: |
+    Conducted in-depth research on UI performance for the JPMorgan eXecute app, identifying key areas affecting responsiveness. Developed and implemented an optimization plan, resulting in significant improvements confirmed by UI benchmarks.
+
+- company: Social App Stories
+  from: 2015-02-01
+  to: 2015-09-01
+  description: |
+    Led Android application development in a startup environment, ensuring high coding standards and best practices. Focused on building a scalable and maintainable codebase to support rapid growth.
+
+- company: 'UAB "Technologinių paslaugų sprendimai"'
+  from: 2012-05-01
+  to: 2015-03-01
+  description: |
+    Designed and developed multiple applications for local government and businesses at TPS, adhering to the best Android development practices. Ensured high-quality, maintainable, and scalable solutions to meet diverse client needs.
+
+- company: JSC BUTENTA
+  from: 2010-10-01
+  to: 2012-05-01
+  description: |
+    JSC “BŪTENTA” develops and adapts business management and accounting software to business organizations of various profiles.
+
+    - Supporting legacy applications
+    - Implement new features to existing applications
+    - Consulting existing software abilities
+
+- company: e-Learning Technology Centre at Kaunas University of Technology
+  from: 2010-04-01
+  to: 2010-06-01
+  description: |
+    Drupal LOM (metadata archiving) and OAI – PMH (metadata exchange service) module development and integration with other Drupal modules.
+
+    Responsibilities:
+
+    - Learn Drupal CMF
+    - Implement LOM (Learning Object Metadata) Drupal module
+    - Implement OAI – PMH (Open Archives Initiative – Protocol for Metadata Harvesting) Drupal module.

@@ -1,0 +1,30 @@
+---
+layout: resume
+title: Résumé
+permalink: /resume/
+---
+<ol class="experience">
+    {% for job in site.data.experience %}
+    <li class="job">
+        {% if job.logo %}
+        <img class="logo" src="{{ "/assets/images/companies/" | append: job.logo | relative_url }}" alt="" width="48" height="48">
+        {% else %}
+        <div class="logo logo-placeholder" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 21V3h11v18M15 9h5v12M2 21h20M7.5 7h4M7.5 11h4M7.5 15h4"/>
+            </svg>
+        </div>
+        {% endif %}
+        <div>
+            <h2>{{ job.company | escape }}</h2>
+            <p class="dates">
+                <time datetime="{{ job.from | date: "%Y-%m" }}">{{ job.from | date: "%b %Y" }}</time> —
+                {% if job.to %}<time datetime="{{ job.to | date: "%Y-%m" }}">{{ job.to | date: "%b %Y" }}</time>{% else %}Present{% endif %}
+            </p>
+            <div class="description">
+                {{ job.description | markdownify }}
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ol>

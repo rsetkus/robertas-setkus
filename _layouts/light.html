@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} — {{ site.title }}</title>
+    {%- assign description = page.description | default: site.description | strip_html | normalize_whitespace | escape %}
+    <meta name="description" content="{{ description }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:type" content="{% if page.collection == "posts" %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">
+    <meta name="twitter:card" content="summary_large_image">{% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "/assets/css/light.css" | relative_url }}">
+    {% if page.collection == "posts" %}<link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">{% endif %}
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ "/feed.xml" | relative_url }}">
+</head>
+<body>
+    <main class="column">
+        {{ content }}
+    </main>
+</body>
+</html>

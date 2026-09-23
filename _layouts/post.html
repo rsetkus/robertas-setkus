@@ -1,0 +1,26 @@
+---
+layout: light
+---
+{% include masthead.html link="/blog/" label="Blog" %}
+<article>
+    <header class="post-header">
+        <h1>{{ page.title | escape }}</h1>
+        <p class="meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %b %Y" }}</time>
+            {% if page.updated %}· Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%-d %b %Y" }}</time>{% endif %}
+            · {% include reading-time.html content=content %}
+        </p>
+        {% include tags.html tags=page.tags %}
+    </header>
+    {% if page.image %}
+    <figure class="post-cover">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | escape }}">
+    </figure>
+    {% endif %}
+    <div class="prose">
+        {{ content }}
+    </div>
+    <footer class="post-footer">
+        <a href="{{ "/blog/" | relative_url }}">← All posts</a>
+    </footer>
+</article>

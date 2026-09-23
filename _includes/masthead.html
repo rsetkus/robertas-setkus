@@ -1,0 +1,9 @@
+<header class="masthead">
+    <a href="{{ "/" | relative_url }}">{{ site.title }}</a>
+    <span aria-hidden="true">·</span>
+    {% if include.link %}
+    <a href="{{ include.link | relative_url }}">{{ include.label }}</a>
+    {% else %}
+    <h1>{{ page.title }}</h1>
+    {% endif %}
+</header>

@@ -1,27 +1,32 @@
 #!/bin/sh
-# Refuses to publish demo/debug content. See AGENTS.md.
+# Refuses pushes that would let Jekyll publish demo content on setkus.lt. See AGENTS.md.
 # Install: cp .githooks/pre-push "$(git rev-parse --git-common-dir)/hooks/pre-push"
 
-DEMO_PATHS="
-_drafts/everything-a-post-can-do.md
-_drafts/sharing-ktor-client-kmp.md
-assets/images/posts/everything-a-post-can-do
-assets/images/posts/sharing-ktor-client-kmp
-"
 ZERO=0000000000000000000000000000000000000000
 status=0
 
+fail() {
+    echo "pre-push: $1 See AGENTS.md." >&2
+    status=1
+}
+
 while read -r local_ref local_sha remote_ref remote_sha; do
-    if [ "$local_ref" = "refs/heads/debug" ] || [ "$remote_ref" = "refs/heads/debug" ]; then
-        echo "pre-push: refusing to push the debug branch ($local_ref -> $remote_ref). See AGENTS.md." >&2
-        status=1
-        continue
-    fi
     [ "$local_sha" = "$ZERO" ] && continue # deleting a remote branch
-    for path in $DEMO_PATHS; do
-        if [ -n "$(git ls-tree -r --name-only "$local_sha" -- "$path")" ]; then
-            echo "pre-push: $remote_ref would publish demo content ($path). See AGENTS.md." >&2
-            status=1
+
+    # Demo images must stay excluded from the production build.
+    if [ -n "$(git ls-tree -r --name-only "$local_sha" -- assets/demo)" ] &&
+        ! git show "$local_sha:_config.yml" 2>/dev/null | grep -Eq '^[[:space:]]*-[[:space:]]*assets/demo/?[[:space:]]*$'; then
+        fail "$remote_ref: _config.yml no longer excludes assets/demo/."
+    fi
+
+    # Demo posts must be unpublished drafts.
+    for entry in $(git grep -l -E '^demo:[[:space:]]*true' "$local_sha" -- _posts _drafts 2>/dev/null); do
+        path=${entry#"$local_sha":}
+        case "$path" in
+            _posts/*) fail "$remote_ref: demo post $path is in _posts/." ;;
+        esac
+        if ! git show "$local_sha:$path" | grep -Eq '^published:[[:space:]]*false'; then
+            fail "$remote_ref: demo post $path is missing 'published: false'."
         fi
     done
 done

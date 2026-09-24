@@ -1,0 +1,16 @@
+# Local preview only. GitHub Pages reads just _config.yml, so nothing here reaches setkus.lt.
+#   jekyll serve --config _config.yml,_config.dev.yml
+#
+# Shows drafts and unpublished posts (including the demo posts), and serves
+# assets/demo/. Arrays replace those in _config.yml, so this is the production
+# exclude list minus assets/demo/.
+show_drafts: true
+unpublished: true
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - gemfiles/
+  - node_modules/
+  - vendor/

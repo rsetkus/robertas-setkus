@@ -51,7 +51,11 @@ defaults:
 #
 # Jekyll 3 (GitHub Pages) replaces its default list instead of adding to it,
 # so the defaults are repeated here.
+#
+# assets/demo/ holds demo-only images and must never be published (AGENTS.md).
+# _config.dev.yml repeats this list without it, for local previews.
 exclude:
+  - assets/demo/
   - AGENTS.md
   - CLAUDE.md
   - Gemfile

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 284" width="440" height="284" role="img" aria-labelledby="title">
+  <title id="title">commonMain holds ItemsApi, createHttpClient and the expected platformEngine function; androidMain supplies the OkHttp engine and iosMain the Darwin engine.</title>
+  <style>
+    .box { fill: #f6f8fa; stroke: #d0d0d0; stroke-width: 1; }
+    .label { font: 600 12px 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.12em; fill: #6b6b6b; }
+    .note { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #6b6b6b; }
+    .code { font: 15px Menlo, 'JetBrains Mono', monospace; fill: #24292f; }
+    .kw { fill: #cf222e; }
+    .arrow { stroke: #9a9a9a; stroke-width: 1.5; fill: none; marker-end: url(#head); }
+  </style>
+  <defs>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#9a9a9a"/>
+    </marker>
+  </defs>
+
+  <rect class="box" x="20" y="16" width="400" height="120" rx="8"/>
+  <text class="label" x="40" y="42">COMMONMAIN</text>
+  <text class="code" x="40" y="70"><tspan class="kw">class</tspan> ItemsApi(client)</text>
+  <text class="code" x="40" y="94"><tspan class="kw">fun</tspan> createHttpClient(engine)</text>
+  <text class="code" x="40" y="118"><tspan class="kw">expect fun</tspan> platformEngine()</text>
+
+  <path class="arrow" d="M115 196 V144"/>
+  <text class="note" x="123" y="174">actual</text>
+  <path class="arrow" d="M325 196 V144"/>
+  <text class="note" x="333" y="174">actual</text>
+
+  <rect class="box" x="20" y="196" width="190" height="72" rx="8"/>
+  <text class="label" x="36" y="222">ANDROIDMAIN</text>
+  <text class="code" x="36" y="250">OkHttp.create()</text>
+
+  <rect class="box" x="230" y="196" width="190" height="72" rx="8"/>
+  <text class="label" x="246" y="222">IOSMAIN</text>
+  <text class="code" x="246" y="250">Darwin.create()</text>
+</svg>

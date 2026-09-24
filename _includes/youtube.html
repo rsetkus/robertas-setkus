@@ -1,0 +1,10 @@
+{%- comment -%}
+  Responsive YouTube player (privacy-enhanced domain, loads lazily).
+  {% include youtube.html id="F5NaqGF9oT4" title="KotlinConf'25 keynote" caption="Optional caption" %}
+{%- endcomment -%}
+<figure class="figure embed">
+<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{{ include.id }}" title="{{ include.title | escape }}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+{%- if include.caption -%}
+<figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>
+{%- endif -%}
+</figure>

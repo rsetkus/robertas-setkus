@@ -1,0 +1,23 @@
+{%- comment -%}
+  Image or short screen recording (.mp4/.webm) with an optional caption.
+  {% include figure.html src="/assets/images/posts/slug/file.webp" alt="What it shows" caption="Markdown **allowed**" %}
+  Optional: class="phone | wide | bordered" (combine with spaces), width, height, link=true (opens the full-size image).
+  Videos also take poster (image shown before playback) and webm (a second source for browsers without MP4 support).
+{%- endcomment -%}
+{%- assign src = include.src | relative_url -%}
+{%- assign ext = include.src | split: "." | last | downcase -%}
+<figure class="figure{% if include.class %} {{ include.class }}{% endif %}">
+{%- if ext == "mp4" or ext == "webm" -%}
+<video{% if include.poster %} poster="{{ include.poster | relative_url }}"{% endif %}{% if include.width %} width="{{ include.width }}"{% endif %}{% if include.height %} height="{{ include.height }}"{% endif %} autoplay loop muted playsinline aria-label="{{ include.alt | escape }}">
+{%- if include.webm -%}<source src="{{ include.webm | relative_url }}" type="video/webm">{%- endif -%}
+<source src="{{ src }}" type="video/{{ ext }}">
+</video>
+{%- else -%}
+{%- if include.link -%}<a href="{{ src }}">{%- endif -%}
+<img src="{{ src }}" alt="{{ include.alt | escape }}"{% if include.width %} width="{{ include.width }}"{% endif %}{% if include.height %} height="{{ include.height }}"{% endif %} loading="lazy" decoding="async">
+{%- if include.link -%}</a>{%- endif -%}
+{%- endif -%}
+{%- if include.caption -%}
+<figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>
+{%- endif -%}
+</figure>

@@ -1,0 +1,23 @@
+---
+layout: light
+title: Blog
+permalink: /blog/
+---
+{% include masthead.html %}
+{% if site.posts.size > 0 %}
+<ol class="posts">
+    {% for post in site.posts %}
+    <li class="post-item">
+        <p class="meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+            · {% include reading-time.html content=post.content %}
+        </p>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+        {% if post.description %}<p class="summary">{{ post.description | escape }}</p>{% endif %}
+        {% include tags.html tags=post.tags %}
+    </li>
+    {% endfor %}
+</ol>
+{% else %}
+<p class="empty">No posts yet.</p>
+{% endif %}

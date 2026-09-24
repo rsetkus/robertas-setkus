@@ -1,9 +1,10 @@
 ---
-published: false # demo only, never publish (see AGENTS.md)
+demo: true       # demo only, never publish (see AGENTS.md)
+published: false
 title: "Everything a post can do"
 description: "A tour of every element the blog supports, from screenshots and screen recordings to callouts and code, each with the Markdown that makes it."
 tags: [android, kmp]
-image: /assets/images/posts/everything-a-post-can-do/cover.jpg
+image: /assets/demo/everything-a-post-can-do/cover.jpg
 image_alt: "Title card reading Everything a post can do, next to a short Kotlin snippet"
 updated: 2026-09-24
 ---
@@ -22,7 +23,7 @@ Keep a post's images in `assets/images/posts/<slug>/`, named after what they sho
 
 The quickest option. The image is centered and never wider than the column. This one is an SVG diagram, which stays sharp at any size.
 
-![Diagram: commonMain holds ItemsApi and createHttpClient; androidMain provides the OkHttp engine and iosMain the Darwin engine](/assets/images/posts/everything-a-post-can-do/source-sets.svg)
+![Diagram: commonMain holds ItemsApi and createHttpClient; androidMain provides the OkHttp engine and iosMain the Darwin engine](/assets/demo/everything-a-post-can-do/source-sets.svg)
 
 <details markdown="1"><summary>Markdown</summary>
 
@@ -37,7 +38,7 @@ Add a class or attributes in `{: }` straight after the image, e.g. `{: .bordered
 
 The `figure` include adds a caption, which can contain Markdown. `link=true` makes the image open at full size when clicked. Try it on this one.
 
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/test-run.png" alt="Terminal showing the shared tests passing on the JVM and the iOS simulator" caption="Shared tests passing on both targets. Click to open full size." link=true width="1600" height="700" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/test-run.png" alt="Terminal showing the shared tests passing on the JVM and the iOS simulator" caption="Shared tests passing on both targets. Click to open full size." link=true width="1600" height="700" %}
 
 <details markdown="1"><summary>Markdown</summary>
 
@@ -58,7 +59,7 @@ The `figure` include adds a caption, which can contain Markdown. `link=true` mak
 
 `class="wide"` lets a large screenshot extend beyond the text column on desktop, up to 960 px. On phones it fits the screen like any other image.
 
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/test-run.png" alt="The same terminal screenshot, shown wider than the text" caption='The same screenshot with `class="wide"`.' class="wide" width="1600" height="700" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/test-run.png" alt="The same terminal screenshot, shown wider than the text" caption='The same screenshot with `class="wide"`.' class="wide" width="1600" height="700" %}
 
 <details markdown="1"><summary>Markdown</summary>
 
@@ -74,7 +75,7 @@ The `figure` include adds a caption, which can contain Markdown. `link=true` mak
 
 A full-width phone screenshot would be taller than the screen. `class="phone"` keeps it at 280 px wide, with rounded corners and a thin frame.
 
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/android-items.webp" alt="Android app showing a list of seven items in Material 3 cards" caption="The Android app (a rendered mockup)." class="phone" width="600" height="1334" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/android-items.webp" alt="Android app showing a list of seven items in Material 3 cards" caption="The Android app (a rendered mockup)." class="phone" width="600" height="1334" %}
 
 <details markdown="1"><summary>Markdown</summary>
 
@@ -92,8 +93,8 @@ A full-width phone screenshot would be taller than the screen. `class="phone"` k
 Wrap figures in `<div class="gallery">` to put them next to each other. This works well for comparing Android and iOS. The figures sit side by side on phones too, as long as each can be at least 140 px wide.
 
 <div class="gallery">
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/android-items.webp" alt="Android version of the items list" caption="Android" class="phone" width="600" height="1334" %}
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/ios-items.webp" alt="iOS version of the items list with a large title and grouped rows" caption="iOS" class="phone" width="600" height="1299" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/android-items.webp" alt="Android version of the items list" caption="Android" class="phone" width="600" height="1334" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/ios-items.webp" alt="iOS version of the items list with a large title and grouped rows" caption="iOS" class="phone" width="600" height="1299" %}
 </div>
 
 <details markdown="1"><summary>Markdown</summary>
@@ -116,7 +117,7 @@ Keep each include on a line with no blank lines between them. A blank line insid
 
 Give the `figure` include an `.mp4` instead of an image and it plays like a GIF: automatically, muted and on a loop. An MP4 is far smaller than the same clip as a GIF. This 5-second clip is 58 KB.
 
-{% include figure.html src="/assets/images/posts/everything-a-post-can-do/loading.mp4" webm="/assets/images/posts/everything-a-post-can-do/loading.webm" poster="/assets/images/posts/everything-a-post-can-do/android-items.webp" alt="Recording: a loading spinner, then list items appearing one by one" caption="Items loading on Android." class="phone" width="600" height="1334" %}
+{% include figure.html src="/assets/demo/everything-a-post-can-do/loading.mp4" webm="/assets/demo/everything-a-post-can-do/loading.webm" poster="/assets/demo/everything-a-post-can-do/android-items.webp" alt="Recording: a loading spinner, then list items appearing one by one" caption="Items loading on Android." class="phone" width="600" height="1334" %}
 
 <details markdown="1"><summary>Markdown</summary>
 

@@ -7,13 +7,14 @@ How to write posts for [setkus.lt/blog](https://setkus.lt/blog/). Jekyll skips f
 ```bash
 mkdir -p _drafts
 cp _templates/deep-dive.md _drafts/sharing-ktor-client-with-kmp.md   # or til.md, talk-recap.md
-JEKYLL_NO_BUNDLER_REQUIRE=true jekyll serve --drafts                   # preview at http://localhost:4000/blog/
+JEKYLL_NO_BUNDLER_REQUIRE=true jekyll serve --config _config.yml,_config.dev.yml   # preview at http://localhost:4000/blog/
 git mv _drafts/sharing-ktor-client-with-kmp.md _posts/2026-10-01-sharing-ktor-client-with-kmp.md
 ```
 
 - The file name is the URL: `_posts/2026-10-01-sharing-ktor-client-with-kmp.md` → `/blog/2026/sharing-ktor-client-with-kmp/`. Keep slugs short, lowercase and hyphenated, and don't rename them after publishing.
 - Jekyll never publishes `_drafts/`, but anything you commit there is still visible in the GitHub repo.
-- `JEKYLL_NO_BUNDLER_REQUIRE=true` is only needed while `bundle install` is broken locally. Otherwise use `bundle exec jekyll serve --drafts`.
+- `JEKYLL_NO_BUNDLER_REQUIRE=true` is only needed while `bundle install` is broken locally. Otherwise use `bundle exec jekyll serve --config _config.yml,_config.dev.yml`.
+- `_config.dev.yml` shows drafts and unpublished posts locally. GitHub Pages reads only `_config.yml`, so neither appears on setkus.lt.
 
 ## Pick a format
 
@@ -88,7 +89,7 @@ updated: 2026-11-02   # optional; add when you change a published post
 
 ## Images, video and embeds
 
-The demo post `_drafts/everything-a-post-can-do.md` shows every option rendered, with the Markdown under each one. It lives only on the local `debug` branch and must never be published (see `AGENTS.md`). To view it, run `git switch debug` and `jekyll serve --drafts --unpublished`, then open `/blog/2026/everything-a-post-can-do/`. In short:
+The demo post `_drafts/everything-a-post-can-do.md` shows every option rendered, with the Markdown under each one. It's a draft marked `demo: true` and `published: false`, and its images are in `assets/demo/`, which the production build excludes. It must never be published (see `AGENTS.md`). To view it, run the preview command above and open `/blog/2026/everything-a-post-can-do/`. In short:
 
 - Put files in `assets/images/posts/<slug>/`. Always write alt text that says what the image shows, not "screenshot".
 - **Plain image:** `![Alt text](/assets/images/posts/slug/file.png)`. Add `{: .bordered}` after it for a thin frame.

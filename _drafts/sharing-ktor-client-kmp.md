@@ -1,5 +1,6 @@
 ---
-published: false # demo only, never publish (see AGENTS.md)
+demo: true       # demo only, never publish (see AGENTS.md)
+published: false
 title: "Sharing one Ktor client between Android and iOS"
 description: "Set up a single Ktor HttpClient in commonMain, pick the engine per platform, and test it with MockEngine on both targets."
 tags: [kmp, kotlin, testing]
@@ -79,7 +80,7 @@ kotlin {
 
 Here's how the pieces fit together:
 
-![Diagram: commonMain holds ItemsApi and createHttpClient; androidMain provides the OkHttp engine and iosMain the Darwin engine](/assets/images/posts/sharing-ktor-client-kmp/source-sets.svg)
+![Diagram: commonMain holds ItemsApi and createHttpClient; androidMain provides the OkHttp engine and iosMain the Darwin engine](/assets/demo/sharing-ktor-client-kmp/source-sets.svg)
 
 ## One client in commonMain
 

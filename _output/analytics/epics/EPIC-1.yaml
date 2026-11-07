@@ -1,0 +1,15 @@
+id: EPIC-1
+title: counter.dev analytics on every production page
+description: |
+  Adds the counter.dev script, configured from one `analytics` section in `_config.yml`, to every
+  HTML page of a production build through `_includes/analytics.html` in the three layouts. Keeps it
+  out of development builds, local previews, feed.xml and any build without a site id, leaves the
+  pages otherwise unchanged, and documents it in AGENTS.md. One feature area, so one epic.
+status: VERIFIED
+depends_on: []
+story_ids: [STORY-1, STORY-2, STORY-3, STORY-4]
+acceptance: |
+  Full suite (`python -m pytest _tests/ -v --tb=short`) passes, including test_baseline_*
+  (no demo content in production). In the production build every built .html file contains
+  cdn.counter.dev exactly once and feed.xml contains it zero times; in the dev build
+  (_config.yml,_config.dev.yml) no file contains it. Manual checks: the visual criteria of STORY-3.

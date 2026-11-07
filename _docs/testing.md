@@ -4,7 +4,7 @@ Jekyll skips folders that start with `_`, so nothing in `_tests/` or `_docs/` is
 
 ## Framework
 
-- pytest with BeautifulSoup. Install once: `python -m pip install --user --break-system-packages -r _tests/requirements.txt`.
+- pytest with BeautifulSoup (and PyYAML for config files). Install once: `python -m pip install --user --break-system-packages -r _tests/requirements.txt`.
 - Tests live in `_tests/`, one file per area: `test_<area>.py`, for example `test_blog.py`, `test_post_layout.py`, `test_feed.py`, `test_resume.py`.
 - Tests check the **built site**: HTML elements, attributes, text, links, meta tags, feed entries, and whether files exist. Never assert on Liquid or CSS source.
 
@@ -42,7 +42,8 @@ Every build copies the site into a temporary folder and builds there, so tests n
 | `prod_site` | The real site, built like GitHub Pages (`JEKYLL_ENV=production`, `_config.yml` only) |
 | `fixture_site` | A production build plus every post in `_tests/fixtures/posts/` |
 | `dev_site` | A local-preview build with `_config.dev.yml` (drafts and demo content shown) |
-| `build(tmp_path, posts=[...], dev=False)` | A custom build, for a story that needs its own posts |
+| `build(tmp_path, posts=[...], dev=False, config=None, env=None, remove=())` | A custom build, for a story that needs its own posts or changed settings. `config` is a dict merged on top of the configs as one more `--config` file (it can change values, not remove keys). `env` sets `JEKYLL_ENV` (default `development` with `dev=True`, else `production`), for example `env="development"` for a plain `jekyll serve` build with `_config.yml` only. `remove` lists dotted keys deleted from the temporary copy of `_config.yml`, for example `["analytics"]` or `["analytics.counter_dev.id"]`; a key that isn't there raises `KeyError` |
+| `build_log(site)` | Everything Jekyll printed (stdout, then stderr) while building `site`, for example to check that a build prints no warnings |
 | `html(site, "blog/index.html")` | The built page as BeautifulSoup |
 | `xml(site, "feed.xml")` | The built feed as BeautifulSoup |
 | `exists(site, "assets/demo")` | Whether a file or folder was built |

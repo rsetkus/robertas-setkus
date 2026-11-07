@@ -1,0 +1,18 @@
+id: STORY-4
+title: AGENTS.md documents analytics
+status: DONE
+epic: EPIC-1
+dependencies: [STORY-1]
+description: |
+  Adds a short "Analytics" item to "How the site fits together" in AGENTS.md, so future agents
+  know where the settings live and that a new layout must include the analytics include.
+  AGENTS.md is excluded from the build, so these criteria check the file itself.
+acceptance_criteria:
+  - id: AC17
+    text: "AGENTS.md's \"How the site fits together\" section (the text between that
+      heading and the next ## heading) has a bullet starting with **Analytics** that
+      mentions _config.yml and analytics.counter_dev, says the script loads only in
+      production, and says a new layout must include analytics.html in its <head>."
+  - id: AC18
+    text: "The production build still contains no AGENTS.md or AGENTS.html (the edit
+      does not publish the file)."

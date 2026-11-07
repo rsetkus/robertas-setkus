@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ "/assets/css/light.css" | relative_url }}">
     {% if page.collection == "posts" %}<link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">{% endif %}
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ "/feed.xml" | relative_url }}">
+    {% include analytics.html %}
 </head>
 <body>
     <main class="column">

@@ -5,6 +5,7 @@ the real `_site/`, `.jekyll-cache/` or `_posts/`, and parallel runs don't
 collide. See _docs/testing.md.
 """
 
+import json
 import os
 import shutil
 import subprocess
@@ -12,6 +13,7 @@ import warnings
 from pathlib import Path
 
 import pytest
+import yaml
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -38,12 +40,38 @@ def _jekyll():
     return path
 
 
-def build(tmp, posts=(), dev=False):
+def _remove_keys(config_file, keys):
+    """Delete dotted keys such as "analytics.counter_dev.id" from a YAML file.
+
+    The file is rewritten without its comments; only the temporary copy is ever
+    passed here. A key that isn't there raises KeyError, so a renamed setting
+    fails loudly instead of making a test pass for the wrong reason.
+    """
+    data = yaml.safe_load(config_file.read_text(encoding="utf-8")) or {}
+    for key in keys:
+        *parents, last = key.split(".")
+        node = data
+        for part in parents:
+            node = node[part]
+        del node[last]
+    config_file.write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False),
+        encoding="utf-8")
+
+
+def build(tmp, posts=(), dev=False, config=None, env=None, remove=()):
     """Build a copy of the site in `tmp` and return the output folder.
 
-    posts: paths of Markdown files to place in the copy's `_posts/`.
-    dev:   also load `_config.dev.yml` (drafts, unpublished posts, demo assets).
-           Without it, the build runs with JEKYLL_ENV=production, like GitHub Pages.
+    posts:  paths of Markdown files to place in the copy's `_posts/`.
+    dev:    also load `_config.dev.yml` (drafts, unpublished posts, demo assets).
+            Without it, the build runs with JEKYLL_ENV=production, like GitHub Pages.
+    config: a dict loaded as one more `--config` file after the others. Jekyll
+            deep-merges hashes, so it can change single values, for example
+            {"analytics": {"counter_dev": {"id": "..."}}}. It can't remove a key.
+    env:    the JEKYLL_ENV value. Default: "development" with dev=True,
+            otherwise "production".
+    remove: dotted keys deleted from the copy's `_config.yml` before the build,
+            for example ["analytics"] or ["analytics.counter_dev.id"].
     """
     tmp = Path(tmp)
     src = tmp / "src"
@@ -58,18 +86,38 @@ def build(tmp, posts=(), dev=False):
         (src / "_posts").mkdir(exist_ok=True)
         for post in posts:
             shutil.copy(post, src / "_posts" / Path(post).name)
+    if remove:
+        _remove_keys(src / "_config.yml", remove)
 
     cmd = [_jekyll(), "build", "--disable-disk-cache",
            "--source", str(src), "--destination", str(dest)]
+    configs = [src / "_config.yml"]
     if dev:
-        cmd += ["--config", f"{src / '_config.yml'},{src / '_config.dev.yml'}"]
-    env = dict(os.environ, JEKYLL_NO_BUNDLER_REQUIRE="true")
-    env["JEKYLL_ENV"] = "development" if dev else "production"
+        configs.append(src / "_config.dev.yml")
+    if config is not None:
+        # JSON is valid YAML, so no YAML library is needed. The file sits
+        # outside the source folder, so it is never copied into the site.
+        override = tmp / "config.override.yml"
+        override.write_text(json.dumps(config), encoding="utf-8")
+        configs.append(override)
+    if len(configs) > 1:
+        cmd += ["--config", ",".join(str(c) for c in configs)]
+    if env is None:
+        env = "development" if dev else "production"
+    jekyll_env = dict(os.environ, JEKYLL_NO_BUNDLER_REQUIRE="true", JEKYLL_ENV=env)
 
-    result = subprocess.run(cmd, cwd=src, env=env, capture_output=True, text=True)
+    result = subprocess.run(cmd, cwd=src, env=jekyll_env,
+                            capture_output=True, text=True)
+    # Kept next to the output folder (never inside it), for build_log().
+    (tmp / "build.log").write_text(result.stdout + result.stderr, encoding="utf-8")
     if result.returncode != 0:
         raise BuildError(f"jekyll build failed:\n{result.stderr or result.stdout}")
     return dest
+
+
+def build_log(site):
+    """Everything Jekyll printed (stdout, then stderr) while building `site`."""
+    return (Path(site).parent / "build.log").read_text(encoding="utf-8")
 
 
 def html(site, path):

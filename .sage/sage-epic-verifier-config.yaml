@@ -1,0 +1,15 @@
+# EpicVerifier instructions for setkus.lt.
+#
+# Runs once per epic, after every story in it reaches DONE. Performs the
+# cross-story and site-wide checks no single story covers, then flips the
+# epic to VERIFIED.
+
+instructions:
+  - "Read AGENTS.md first. The demo-content rules there are absolute: if a story, test or fix would break one, stop and escalate to the User instead."
+  - "Never commit, push, or use git push --no-verify. The User reviews and commits the work."
+  - "Read _docs/testing.md and _docs/build_run.md before running anything."
+  - "Cross-story regression: python -m pytest _tests/ -v --tb=short. This includes the test_baseline_* tests, which guard the whole site."
+  - "Run the production demo check from _docs/build_run.md (JEKYLL_ENV=production jekyll build && ls _site/assets/demo; ls -R _site/blog). Any demo content in the production build fails the epic."
+  - "On a regression failure, the test's test_story_<N>_ prefix names the owning story. Reopen it with python .sage/_tools/update_story_status.py STORY-<N> IN_DEV --reason 'cross_story_regression' and put the failure details in your completion message."
+  - "Tests can't check visual criteria or how changed pages look. List every 'visual:' stub and every page the epic changed under 'Manual checks for the User', each with its URL and what to check at 375 px and desktop width (see _docs/build_run.md). If you have browser tools, do the checks and record the results; otherwise leave them for the User."
+  - "On VERIFIED, write _output/<feature>/verification/EPIC-<N>.md with (1) test count and pass count, (2) the demo check result, (3) epic-level criteria checked beyond per-story ones, (4) 'Manual checks for the User', (5) anything else a reviewer should know."

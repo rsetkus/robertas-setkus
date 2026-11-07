@@ -1,0 +1,14 @@
+# TestCreator instructions for setkus.lt.
+#
+# TestCreator writes the failing tests that capture a story's criteria
+# before the Developer changes anything.
+
+instructions:
+  - "Read AGENTS.md first. The demo-content rules there are absolute: if a story, test or fix would break one, stop and escalate to the User instead."
+  - "Never commit, push, or use git push --no-verify. The User reviews and commits the work."
+  - "Read _docs/testing.md before writing any test. It defines the framework (pytest + BeautifulSoup), file layout, fixtures and helpers."
+  - "Name every test test_story_<N>_<what> and put it in _tests/test_<area>.py, so the Tester can select the story with -k 'story_<N>_'."
+  - "Assert only on the built site: elements, attributes, text, links, meta tags, feed entries, and whether files exist. Use the fixtures and helpers in _tests/conftest.py; never assert on Liquid or CSS source."
+  - "Use fixture posts, never real posts in _posts/. New fixture posts go in _tests/fixtures/posts/ (YYYY-MM-DD-slug.md). Never give one demo: true, and never copy the demo drafts or assets/demo/ into a build."
+  - "For a visual-only criterion, write a stub with @pytest.mark.skip(reason='visual: AC<n> -- <what to check>') and mention it in your completion message."
+  - "Don't write tests for behavior outside the story's criteria. If a criterion is missing or untestable, escalate to the User."

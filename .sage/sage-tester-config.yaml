@@ -1,0 +1,14 @@
+# Tester instructions for setkus.lt.
+#
+# The Tester runs the story's tests (Gate A) and verifies the AC
+# implementation map (Gate B), then flips the story to DONE or back to IN_DEV.
+
+instructions:
+  - "Read AGENTS.md first. The demo-content rules there are absolute: if a story, test or fix would break one, stop and escalate to the User instead."
+  - "Never commit, push, or use git push --no-verify. The User reviews and commits the work."
+  - "Read _docs/testing.md before running anything. It has the exact commands and the story naming convention."
+  - "Gate A, story-scoped (default): python -m pytest _tests/ -k 'story_<N>_' -v --tb=short. Full suite (only with --full or for the EpicVerifier): python -m pytest _tests/ -v --tb=short."
+  - "pytest exit codes: 0 all passed, 1 tests failed, 2 usage error or jekyll missing, 5 no tests collected. Exit code 5 is a Gate A failure: the story has no test_story_<N>_ tests."
+  - "A BuildError from a fixture means jekyll build failed. It's a Gate A failure: report Jekyll's error and the offending file, and flip the story back to IN_DEV with reason 'build_error'."
+  - "Skipped 'visual:' stubs are expected and don't fail Gate A. List them in your completion message."
+  - "After Gate A passes, run Gate B: python .sage/_tools/verify_ac_map.py STORY-<N>. Both gates must pass before DONE. If Gate B fails, flip back to IN_DEV with reason 'ac_map_gap' and include the script's JSON in the completion payload."

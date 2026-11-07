@@ -29,6 +29,11 @@ while read -r local_ref local_sha remote_ref remote_sha; do
             fail "$remote_ref: demo post $path is missing 'published: false'."
         fi
     done
+
+    # sage-config.yaml must not carry a worktree's absolute_root_dir.
+    if git show "$local_sha:sage-config.yaml" 2>/dev/null | grep -Eq '^[[:space:]]*absolute_root_dir:'; then
+        fail "$remote_ref: sage-config.yaml sets absolute_root_dir; it is set per worktree and never committed."
+    fi
 done
 
 exit $status

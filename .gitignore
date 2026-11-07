@@ -25,3 +25,14 @@ node_modules/
 
 # Ignore .jekyll-metadata (Jekyll stores metadata about the build process here)
 .jekyll-metadata
+
+# Claude Code: per-session worktrees and local settings
+.claude/worktrees/
+.claude/settings.local.json
+
+# Sage: prompts rendered by load_agents.py (contain absolute paths)
+.sage/.rendered/
+
+# Python test runs
+__pycache__/
+.pytest_cache/

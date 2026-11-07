@@ -9,6 +9,7 @@ unpublished: true
 exclude:
   - AGENTS.md
   - CLAUDE.md
+  - sage-config.yaml
   - Gemfile
   - Gemfile.lock
   - gemfiles/

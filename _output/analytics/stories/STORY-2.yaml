@@ -1,0 +1,27 @@
+id: STORY-2
+title: No counter.dev script outside production or without a site id
+status: DONE
+epic: EPIC-1
+dependencies: [STORY-1]
+description: |
+  Proves the two switches in `_includes/analytics.html`: the environment check (development builds
+  and local previews, with or without `_config.dev.yml`, load nothing) and the site-id check (no
+  section, no `id`, or an empty `id` turns analytics off). Note that an empty string is truthy in
+  Liquid, so the empty-id case needs its own check.
+acceptance_criteria:
+  - id: AC8
+    text: "In a development build (JEKYLL_ENV=development, --config _config.yml,_config.dev.yml),
+      no built .html file contains cdn.counter.dev, including the pages of the demo
+      drafts in _drafts/."
+  - id: AC9
+    text: "In a build with _config.yml only and JEKYLL_ENV=development (what a plain
+      `jekyll serve` uses), no built .html file contains cdn.counter.dev."
+  - id: AC10
+    text: "Given a production build whose _config.yml has no analytics section, the
+      build succeeds and no built .html file contains cdn.counter.dev."
+  - id: AC11
+    text: "Given a production build whose analytics.counter_dev section has no id
+      key, and separately one whose id is an empty string (\"\"), no built .html file
+      contains cdn.counter.dev in either build."
+  - id: AC12
+    text: "_config.dev.yml, loaded as YAML, has no analytics key."

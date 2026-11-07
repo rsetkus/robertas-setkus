@@ -1,0 +1,37 @@
+id: STORY-1
+title: The counter.dev script is in the head of every production page
+status: DONE
+epic: EPIC-1
+dependencies: []
+description: |
+  Adds the `analytics` section to `_config.yml`, creates `_includes/analytics.html` and includes it
+  as the last element of `<head>` in `light.html`, `default.html` and `page.html` (not `post.html`).
+  This is the PRD's steps 1 and 2 together: the config and include alone produce no observable
+  output, so they ship with the layout change that makes them testable.
+  Post pages are checked with fixture_site (`/blog/2026/fixture-post/`), since `_posts/` is empty.
+acceptance_criteria:
+  - id: AC1
+    text: "In a production build (JEKYLL_ENV=production, _config.yml only, with the
+      fixture posts), each of index.html, blog/index.html, resume/index.html, torch-privacy-policy/index.html
+      and blog/2026/fixture-post/index.html contains exactly one <script> with src=\"\
+      https://cdn.counter.dev/script.js\", and that element is inside <head>."
+  - id: AC2
+    text: "On each page in AC1, that script has data-id=\"cee64376-9fee-402d-98b4-58246fa7413a\"\
+      \ and data-utcoffset=\"2\"."
+  - id: AC3
+    text: "On each page in AC1, that script has exactly three attributes (src, data-id,
+      data-utcoffset), no async, defer or type attribute, and no text content."
+  - id: AC4
+    text: "On each page in AC1, that script is the last element child of <head>."
+  - id: AC5
+    text: "In the same production build, every built .html file contains the string
+      cdn.counter.dev exactly once (no page has the script twice, posts included)."
+  - id: AC6
+    text: "In the same production build, feed.xml contains no <script> element and
+      no occurrence of cdn.counter.dev."
+  - id: AC7
+    text: "Given a production build whose config sets analytics.counter_dev.id to
+      \"00000000-0000-0000-0000-000000000000\" and utcoffset to 3, index.html, blog/index.html
+      and torch-privacy-policy/index.html have a counter.dev script with data-id=\"\
+      00000000-0000-0000-0000-000000000000\" and data-utcoffset=\"3\" (the values
+      come from the config, not the layouts)."

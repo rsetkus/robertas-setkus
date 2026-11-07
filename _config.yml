@@ -31,6 +31,13 @@ github_username:  jekyll
 # Build settings
 theme: null
 
+# counter.dev analytics. The script loads only in production builds.
+# Remove `id` to turn analytics off.
+analytics:
+  counter_dev:
+    id: "cee64376-9fee-402d-98b4-58246fa7413a"
+    utcoffset: 2
+
 # Blog posts: _posts/YYYY-MM-DD-slug.md is published at /blog/YYYY/slug/.
 # Writing guide and post templates: _templates/README.md
 defaults:

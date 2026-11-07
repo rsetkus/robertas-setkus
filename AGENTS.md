@@ -60,6 +60,7 @@ Locally `jekyll -v` is 4.x, but GitHub Pages builds with Jekyll 3 and its whitel
 - **Posts:** the `defaults` in `_config.yml` give every post `layout: post` and the permalink `/blog/:year/:title/`. Formats, front matter and post includes (`figure.html`, `youtube.html`) are documented in `_templates/README.md`.
 - **Résumé:** `/resume/` is rendered from `_data/experience.yml` (field rules are in its header comment). Company logos go in `assets/images/companies/`.
 - **Two configs with duplicated `exclude` lists.** When configs are merged, arrays replace each other, and Jekyll 3 replaces its default exclude list too. So `_config.dev.yml` repeats the whole production list minus `assets/demo/`. When you add an entry to `exclude` in `_config.yml`, add it to `_config.dev.yml` as well.
+- **Analytics.** The counter.dev settings live in `_config.yml` under `analytics.counter_dev`. `_includes/analytics.html` outputs the script only in production builds (`JEKYLL_ENV=production`, which GitHub Pages sets) and only when `id` is set, so local previews load nothing. `light`, `default` and `page` include it as the last element of `<head>`. A new layout must include `analytics.html` in its `<head>` as well, unless it wraps one of those layouts the way `post` wraps `light`.
 
 ## Running Sage
 

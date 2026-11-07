@@ -1,0 +1,29 @@
+id: STORY-3
+title: Pages are otherwise unchanged
+status: DONE
+epic: EPIC-1
+dependencies: [STORY-1]
+description: |
+  Guards the PRD's "nothing else changes" requirement: apart from the script, built pages are
+  identical to a build with analytics off, the production build prints no new warnings, and the
+  pages look the same. Also holds the post-deploy manual check of the live site.
+acceptance_criteria:
+  - id: AC13
+    text: "For each of index.html, blog/index.html, resume/index.html, torch-privacy-policy/index.html
+      and blog/2026/fixture-post/index.html, a production build with the shipped config
+      and a production build whose config has no analytics.counter_dev.id produce
+      identical <head> and <body> after every <script> with a cdn.counter.dev src
+      is removed from both and whitespace between tags is ignored (same title, meta,
+      link and style elements in the same order, same body content)."
+  - id: AC14
+    text: "A production build (JEKYLL_ENV=production, _config.yml only, with the fixture
+      posts) exits 0 and its output contains no line with \"Warning\" or \"Deprecation\"\
+      \ (a production build prints none today)."
+  - id: AC15
+    text: "visual: /, /blog/, /resume/, /torch-privacy-policy/ and a post look the
+      same as before the change at desktop width and at 375 px (no shift, gap or extra
+      element)."
+  - id: AC16
+    text: "visual (after deploy): opening https://setkus.lt/ in a browser shows a
+      request to cdn.counter.dev/script.js in the network tab, and the visit appears
+      in the counter.dev dashboard within a few minutes."

@@ -43,3 +43,20 @@ cp .githooks/pre-push "$(git rev-parse --git-common-dir)/hooks/pre-push"
 ## Writing posts
 
 Formats, templates and the writing guide are in `_templates/README.md`.
+
+## Build and check
+
+There are no tests or linters. The check is a clean production build: run the build command under "Previewing locally" and read Jekyll's warnings. Restart `jekyll serve` after editing either config file, because it doesn't reload them.
+
+Locally `jekyll -v` is 4.x, but GitHub Pages builds with Jekyll 3 and its whitelisted plugins only. Don't rely on Jekyll 4-only features or add plugins to the `Gemfile` expecting them to run on setkus.lt.
+
+## How the site fits together
+
+- **No theme, no plugins.** `theme: null`. Things a plugin would normally do are written by hand: `feed.xml` is a Liquid Atom template, the SEO and Open Graph tags live in `_layouts/light.html`, and reading time comes from `_includes/reading-time.html`.
+- **Three unrelated layouts, each with its own CSS:**
+  - `light` is the current design (`assets/css/light.css`). `blog.html`, `resume.html` and every post (`post` → `light`) use it. `assets/css/syntax.css` loads only on posts.
+  - `default` is the older home page design (`index.html`, `assets/css/style.css`, background image, `_includes/nav.html`).
+  - `page` is self-contained with inline styles (`privacy-policy.md`).
+- **Posts:** the `defaults` in `_config.yml` give every post `layout: post` and the permalink `/blog/:year/:title/`. Formats, front matter and post includes (`figure.html`, `youtube.html`) are documented in `_templates/README.md`.
+- **Résumé:** `/resume/` is rendered from `_data/experience.yml` (field rules are in its header comment). Company logos go in `assets/images/companies/`.
+- **Two configs with duplicated `exclude` lists.** When configs are merged, arrays replace each other, and Jekyll 3 replaces its default exclude list too. So `_config.dev.yml` repeats the whole production list minus `assets/demo/`. When you add an entry to `exclude` in `_config.yml`, add it to `_config.dev.yml` as well.

@@ -1,0 +1,14 @@
+# ProductOwner instructions for setkus.lt.
+#
+# The PO turns the feature's PRD into spec.md, epics/ and stories/.
+# setkus.lt is a Jekyll site, so every criterion is about the built site.
+
+instructions:
+  - "Read AGENTS.md first. The demo-content rules there are absolute: if a story, test or fix would break one, stop and escalate to the User instead."
+  - "Never commit, push, or use git push --no-verify. The User reviews and commits the work."
+  - "The feature PRD is _prds/<feature_name>.md (the snake_case feature name). Read it before drafting the spec. If it doesn't exist, escalate to the User instead of guessing the requirements."
+  - "Honor the PRD's Non-goals strictly. Anything outside them goes into a 'Future considerations' subsection of the spec, not into a story."
+  - "Resolve every item under 'Open questions for the ProductOwner' in the spec: pick a default with a one-line rationale, or escalate to the User before requesting approval."
+  - "Phrase acceptance criteria as observable output of the built site, testable per _docs/testing.md: 'given a post with front matter X, /blog/ shows Y' or 'the production build contains no Z'. Never 'the layout works correctly'."
+  - "Label criteria that can only be checked by eye (layout, spacing, phone width) as visual. They become skipped test stubs and manual checks, so keep them few and specific."
+  - "Use one epic per feature area in the PRD. Read AGENTS.md ('How the site fits together') and _templates/README.md when scoping, so stories follow the existing layouts, includes and front matter fields."

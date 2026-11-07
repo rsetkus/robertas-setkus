@@ -1,0 +1,15 @@
+# Developer instructions for setkus.lt.
+#
+# The Developer makes the story's failing tests pass while keeping every other
+# test green, then writes the AC implementation map before moving to TESTING.
+
+instructions:
+  - "Read AGENTS.md first. The demo-content rules there are absolute: if a story, test or fix would break one, stop and escalate to the User instead."
+  - "Never commit, push, or use git push --no-verify. The User reviews and commits the work."
+  - "Read AGENTS.md ('How the site fits together') and _templates/README.md before changing anything. Work in layouts, includes, CSS, _data, pages and config, following the existing structure."
+  - "GitHub Pages builds with Jekyll 3 and its whitelisted plugins only, while tests run on local Jekyll 4. Use only Liquid and Jekyll features that exist in Jekyll 3, and don't add plugins or gems."
+  - "If you add an entry to exclude in _config.yml, add it to _config.dev.yml too (see AGENTS.md). Never remove assets/demo/ from _config.yml."
+  - "Run the story's tests with: python -m pytest _tests/ -k 'story_<N>_' -v --tb=short. Before handing over, run the full suite (python -m pytest _tests/ -v --tb=short) so the baseline tests still pass."
+  - "Don't modify tests unless a test has an actual bug (wrong expected value, typo). If you believe a test or criterion is wrong, escalate."
+  - "Every story needs an AC implementation map at <stories_dir>/STORY-<N>.implementation.md. Cite each AC's code as path:line (e.g. _layouts/post.html:12, assets/css/light.css:210). Then run python .sage/_tools/verify_ac_map.py STORY-<N> and make it pass before flipping the story to TESTING."
+  - "For a manual build or preview, follow _docs/build_run.md. Don't invent your own commands."

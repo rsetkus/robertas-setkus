@@ -38,6 +38,8 @@ def test_baseline_production_has_no_repo_only_files(prod_site, name):
     "resume/index.html",
     "feed.xml",
     "torch-privacy-policy/index.html",
+    "pliuskis-privacy-policy/index.html",
+    "pliuskis-terms/index.html",
 ])
 def test_baseline_main_pages_exist(prod_site, path):
     assert exists(prod_site, path)

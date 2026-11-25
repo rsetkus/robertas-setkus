@@ -6,7 +6,7 @@ permalink: /pliuskis-privacy-policy/
 
 # Privacy Policy for Pliuškis
 
-**Last updated: November 22, 2026**
+**Last updated: November 25, 2026**
 
 ## Overview
 
@@ -65,7 +65,39 @@ The app does not use analytics tools, advertising networks or tracking technolog
 
 ## Data Retention and Deleting Your Account
 
-We keep your account information for as long as you have an account. You can delete your account at any time in the app, or by emailing us. Deleting your account removes your account information from our service.
+We keep your account information for as long as you have an account. You can delete your account at any time, in the app or by email.
+
+### Delete your account in the app
+
+1. Open Pliuškis.
+2. In the device list, tap Account (the person icon at the top).
+3. Tap Delete account, then Delete.
+
+The steps are the same on Android and iPhone. Your account is deleted at once, and the app goes back to the sign-in screen. Your plant devices keep working.
+
+### Ask us to delete your account by email
+
+If you can't use the app, email pliuskis@setkus.lt with the subject "Delete my account". Send it from the email address of your Pliuškis account: the address of the Google account or Apple ID you sign in with. We can only act on a request from that address, so nobody can delete someone else's account. If you chose Apple's "Hide My Email", tell us the relay address and we will confirm the request by writing to it.
+
+We delete your account within 30 days of your request and reply when it is done.
+
+### What is deleted
+
+- Your email address
+- The user ID that Google or Apple gives us for your account
+- The identity ID that links your account to your devices. Once your account is deleted, it can no longer be used to reach any device.
+
+### What is kept, and for how long
+
+- Your deletion email and our reply, for 12 months, as a record that we deleted your account.
+- Short technical logs of failed connections and of our account-deletion service. They contain no email address or name, and are deleted automatically within 30 days.
+- Our cloud provider's security records of account changes, which are deleted automatically within 90 days.
+
+We keep nothing else. We never store your measurements or commands.
+
+### If you signed in with Apple
+
+You can also remove Pliuškis from your Apple ID. On an iPhone, go to Settings > [your name] > Sign-In & Security > Sign in with Apple, choose Pliuškis and stop using it. On any other device, sign in at account.apple.com and go to Sign-In and Security > Sign in with Apple.
 
 ## Data Security
 
